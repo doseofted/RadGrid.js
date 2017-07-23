@@ -37,4 +37,5 @@ RadGrid can be expanded upon to do some cool things. For example, it could becom
 - A music visualizer with lyrics (change colors and speed based on sound data, text along with time in song)
 - Interactive image made of particles (by replacing each vertex with pixel color of image)
 - A fun, interactive loading screen or webpage background
-I have decided not to make these tools (at least not in the near future) but I encourage others to do so. Each component of the library is separated nicely and I describe in the comments very thoroughly how it works. If you do decide to make something with the library, share a link back to me because I would love to see it!
+
+I have decided not to make these apps (at least not in the near future) but I encourage others to do so. Each component of the library is separated nicely and I describe in the comments very thoroughly how it works. If you do decide to make something with the library, share a link back to me because I would love to see it!
