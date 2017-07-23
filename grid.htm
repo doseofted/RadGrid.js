@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>RadGrid Aesthetic.</title>
+		<script src="RadGrid.js"></script>
+		<!--below are included for testing-->
+		<script src="testing/dat.gui.js"></script>
+		<script src="testing/stats.js"></script>
+		<style>
+		/*use CSS styles below if you want browser-specific grabbing cursors*/
+			.grab {
+				cursor: grab !important;
+				cursor: -webkit-grab !important;
+				cursor: -moz-grab !important;
+			}
+			.grabbing {
+				cursor: grabbing !important;
+				cursor: -webkit-grabbing !important;
+				cursor: -moz-grabbing !important;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="radgrid-canvas"></canvas>
+		<script>
+			var grid; var gui; var gridSettings; var textSettings; var stats;
+			window.addEventListener("DOMContentLoaded", function () {
+				//initialize RadGrid
+				grid = new RadGrid({
+					canvas: "radgrid-canvas",
+					gridSize: 24,
+					radius: 8,
+					numberOfPoints: 24,
+					speed: 64,
+					backgroundColor: "#f68cff",
+					noBackground: false,
+					animateBackgroundHue: false,
+					//hueLowestValue: 80,
+					//hueHighestValue: 208,
+					//hueSpeed: 2,
+					gridColor: "#fff",
+					gridThickness: 1,
+					useCirclesInstead: false,
+					text: "Cool.",
+					fontFamily: "Arial",
+					makeItalic: true,
+					makeBold: true,
+					textColor: "#fff",
+					shadowColor: "#000",
+					fontSize: 64,
+					lineHeight: 2,
+					shadowOffset: 2
+				});
+				//initialize dat.GUI
+				gui = new dat.GUI();
+				gridSettings = gui.addFolder("Grid Settings");
+				gridSettings.add(grid, "gridSize", 8, 128).step(1);
+				gridSettings.add(grid, "radius", 2, 16).step(1);
+				gridSettings.add(grid, "speed", 10, 300).step(1);
+				gridSettings.add(grid, "numberOfPoints", 0, 100).step(1);
+				gridSettings.addColor(grid, "backgroundColor");
+				gridSettings.addColor(grid, "gridColor");
+				gridSettings.add(grid, "noBackground");
+				gridSettings.add(grid, "gridThickness", 0, 40);
+				gridSettings.add(grid, "playPause");
+				gridSettings.add(grid, "saveImage");
+				gridSettings.add(grid, "resetGridStrength", 0, 2);
+				gridSettings.add(grid, "useCirclesInstead");
+				textSettings = gui.addFolder("Text Settings");
+				textSettings.add(grid, "text");
+				textSettings.add(grid, "fontSize", 8, 200);
+				textSettings.add(grid, "fontFamily");
+				textSettings.add(grid, "makeItalic");
+				textSettings.add(grid, "makeBold");
+				textSettings.add(grid, "lineHeight", 1, 2);
+				textSettings.add(grid, "shadowOffset", 0, 20);
+				textSettings.addColor(grid, "textColor");
+				textSettings.addColor(grid, "shadowColor");
+				bgSettings = gui.addFolder("Color Animation Settings");
+				bgSettings.add(grid, "animateBackgroundHue");
+				bgSettings.add(grid, "hueLowestValue", 0, 255);
+				bgSettings.add(grid, "hueHighestValue", 0, 255);
+				bgSettings.add(grid, "hueSpeed", 0, 2);
+				gui.domElement.parentNode.style.zIndex = 3;
+				gridSettings.open();
+				textSettings.open();
+				bgSettings.open();
+				//initialize Stats.js
+				stats = new Stats();
+				stats.showPanel(0);
+				document.body.appendChild(stats.dom);
+			});
+		</script>
+	</body>
+</html>
